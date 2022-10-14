@@ -62,12 +62,9 @@
 		2F547E5E28F98014006E8B09 /* iMove Watch App */ = {
 			isa = PBXGroup;
 			children = (
-				2F547E7328F99786006E8B09 /* iMove Watch App.entitlements */,
-				2F547E5F28F98014006E8B09 /* iMoveApp.swift */,
-				2F547E6128F98014006E8B09 /* ContentView.swift */,
-				2F547E7128F9853C006E8B09 /* WorkoutView.swift */,
-				2F547E7428F997D7006E8B09 /* DataManager.swift */,
-				2F547E6328F98015006E8B09 /* Assets.xcassets */,
+				2F547E9428F9C1E6006E8B09 /* App */,
+				2F547E9628F9C1F0006E8B09 /* Manager */,
+				2F547E9528F9C1EE006E8B09 /* UI */,
 				2F547E6528F98015006E8B09 /* Preview Content */,
 			);
 			path = "iMove Watch App";
@@ -79,6 +76,33 @@
 				2F547E6628F98015006E8B09 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2F547E9428F9C1E6006E8B09 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				2F547E5F28F98014006E8B09 /* iMoveApp.swift */,
+				2F547E6328F98015006E8B09 /* Assets.xcassets */,
+				2F547E7328F99786006E8B09 /* iMove Watch App.entitlements */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		2F547E9528F9C1EE006E8B09 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				2F547E6128F98014006E8B09 /* ContentView.swift */,
+				2F547E7128F9853C006E8B09 /* WorkoutView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		2F547E9628F9C1F0006E8B09 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				2F547E7428F997D7006E8B09 /* DataManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,7 +301,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "iMove Watch App/iMove Watch App.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "iMove Watch App/App/iMove Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iMove Watch App/Preview Content\"";
@@ -310,7 +334,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "iMove Watch App/iMove Watch App.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "iMove Watch App/App/iMove Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iMove Watch App/Preview Content\"";
