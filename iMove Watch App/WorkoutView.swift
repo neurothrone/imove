@@ -14,6 +14,7 @@ struct WorkoutView: View {
   
   @ObservedObject var dataManager: DataManager
   @State private var displayMode: DisplayMode = .distance
+  @State private var isAlertPresented = false
   
   var quantity: String {
     switch displayMode {
@@ -29,6 +30,22 @@ struct WorkoutView: View {
   }
   
   var body: some View {
+    content
+      .alert("Save to HealthKit?", isPresented: $isAlertPresented) {
+        Group {
+          Button("Discard", role: .cancel) {
+            dataManager.end(saveToHealthKit: false)
+          }
+          Button("Save") {
+            dataManager.end()
+          }
+          .tint(.purple)
+        }
+        .buttonStyle(.borderedProminent)
+      }
+  }
+  
+  var content: some View {
     VStack {
       Button(action: changeDisplayMode) {
         Text(quantity)
@@ -40,7 +57,9 @@ struct WorkoutView: View {
         Button("Stop", action: dataManager.pause)
       } else {
         Button("Resume", action: dataManager.resume)
-        Button("End", action: dataManager.end)
+        Button("End") {
+          isAlertPresented.toggle()
+        }
       }
     }
   }

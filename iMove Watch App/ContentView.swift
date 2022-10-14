@@ -30,18 +30,32 @@ struct ContentView: View {
   }
 
   var body: some View {
-    if dataManager.state == .inactive {
+    NavigationStack {
       content
+        .navigationTitle(dataManager.state == .inactive ? "iMove" : "Get to work")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+  }
+  
+  @ViewBuilder
+  var content: some View {
+    if dataManager.state == .inactive {
+      activitySelection
     } else {
       WorkoutView(dataManager: dataManager)
     }
   }
   
-  var content: some View {
+  var activitySelection: some View {
     VStack {
-      Picker("Choose an activity", selection: $selectedActivityIndex) {
-        ForEach(activities.indices, id: \.self) { index in
+      List(activities.indices, id: \.self) { index in
+        Button {
+          withAnimation(.default) {
+            selectedActivityIndex = index
+          }
+        } label: {
           Text(activities[index].name)
+            .foregroundColor(selectedActivityIndex == index ? .green : .primary)
         }
       }
       
@@ -51,6 +65,8 @@ struct ContentView: View {
         dataManager.activity = activities[selectedActivityIndex].type
         dataManager.start()
       }
+      .buttonStyle(.borderedProminent)
+      .tint(.purple)
     }
   }
 }

@@ -23,7 +23,7 @@ final class DataManager: NSObject, ObservableObject {
   private var workoutBuilder: HKLiveWorkoutBuilder?
   
   var activity: HKWorkoutActivityType = .cycling
-  
+  private var willSaveToHealthKit = false
   
   func start() {
     let sampleTypes: Set<HKSampleType> = [
@@ -76,11 +76,24 @@ final class DataManager: NSObject, ObservableObject {
     workoutSession?.resume()
   }
   
-  func end() {
+  func end(saveToHealthKit: Bool = true) {
+    willSaveToHealthKit = saveToHealthKit
     workoutSession?.end()
+    
+    totalEnergyBurned = .zero
+    totalDistance = .zero
+    lastHeartRate = .zero
   }
   
-  private func save() {
+  func save() {
+    guard willSaveToHealthKit else {
+      Task { @MainActor in
+        self.state = .inactive
+      }
+      
+      return
+    }
+    
     workoutBuilder?.endCollection(withEnd: .now) { wasSuccessful, error in
       self.workoutBuilder?.finishWorkout { workout, error in
         Task { @MainActor in
